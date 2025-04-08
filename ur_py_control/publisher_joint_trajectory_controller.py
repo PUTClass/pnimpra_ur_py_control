@@ -29,7 +29,7 @@ class PublisherJointTrajectory(Node):
         super().__init__("publisher_position_trajectory_controller")
         # Declare all parameters
 
-        controller_name = "joint_trajectory_controller"
+        controller_name = "scaled_joint_trajectory_controller"
         wait_sec_between_publish = 6.0
         self.joints = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint',
                        'wrist_3_joint']
