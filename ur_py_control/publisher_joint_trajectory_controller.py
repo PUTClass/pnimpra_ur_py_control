@@ -23,6 +23,7 @@ from rcl_interfaces.msg import ParameterDescriptor
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from sensor_msgs.msg import JointState
 
+import numpy as np
 
 class PublisherJointTrajectory(Node):
     def __init__(self):
@@ -34,10 +35,8 @@ class PublisherJointTrajectory(Node):
         self.joints = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint',
                        'wrist_3_joint']
         self.positions = []
-        self.positions.append([0.785, -1.57, 0.785, 0.785, 0.785, 0.785])
-        self.positions.append([0.0, -1.57, 0.0, 0.0, 0.0, 0.0])
-        self.positions.append([0.0, -1.57, 0.0, 0.0, -0.785, 0.0])
-        self.positions.append([0.0, -1.57, 0.0, 0.0, 0.0, 0.0])
+        # self.positions.append(np.deg2rad([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]))
+        self.positions.append(np.deg2rad([0.0, -90.0, 0.0, -90.0, 0.0, 0.0]))
 
         # Read all positions from parameters
         self.goals = []  # List of JointTrajectoryPoint
@@ -66,7 +65,6 @@ class PublisherJointTrajectory(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
     publisher_joint_trajectory = PublisherJointTrajectory()
 
     rclpy.spin(publisher_joint_trajectory)
